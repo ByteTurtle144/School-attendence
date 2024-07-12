@@ -1,0 +1,238 @@
+// Creating the 4 tables Table
+Create table Salesman(Salesman_id int not null primary key, Name varchar(15), City varchar(20), Commision float not null);
+
+Create table Customer(Customer_id int not null, Cust_Name varchar(15), City varchar(20), Grade int, Salesman_id int not null, primary key(Customer_id), Foreign key(Salesman_id) references Salesman(Salesman_id));
+
+Create table Orders(Order_No int not null, Purchase_Amt float not null, Order_Date date, Customer_id int not null, Salesman_id int not null, primary key(Order_No, Customer_id, Salesman_id), Foreign key(Customer_id) references Customer(Customer_id), Foreign key(Salesman_id) references Salesman(Salesman_id) on delete cascade);
+
+INSERT INTO Salesman (Salesman_id, Name, City, Commision) VALUES
+(1, 'Amit Kumar', 'Delhi', 0.10),
+(2, 'Priya Singh', 'Mumbai', 0.12),
+(3, 'Rajesh Sharma', 'Kolkata', 0.15),
+(4, 'Sonal Patel', 'Chennai', 0.08),
+(5, 'Ravi Mehta', 'Bangalore', 0.11),
+(6, 'Sneha Nair', 'Hyderabad', 0.09),
+(7, 'Anil Reddy', 'Pune', 0.13),
+(8, 'Meena Gupta', 'Ahmedabad', 0.10),
+(9, 'Vikram Rao', 'Jaipur', 0.14),
+(10, 'Kavita Verma', 'Surat', 0.07);
+
+mysql> select * from salesman;
++-------------+---------------+-----------+-----------+
+| Salesman_id | Name          | City      | Commision |
++-------------+---------------+-----------+-----------+
+|           1 | Amit Kumar    | Delhi     |       0.1 |
+|           2 | Priya Singh   | Mumbai    |      0.12 |
+|           3 | Rajesh Sharma | Kolkata   |      0.15 |
+|           4 | Sonal Patel   | Chennai   |      0.08 |
+|           5 | Ravi Mehta    | Bangalore |      0.11 |
+|           6 | Sneha Nair    | Hyderabad |      0.09 |
+|           7 | Anil Reddy    | Pune      |      0.13 |
+|           8 | Meena Gupta   | Ahmedabad |       0.1 |
+|           9 | Vikram Rao    | Jaipur    |      0.14 |
+|          10 | Kavita Verma  | Surat     |      0.07 |
++-------------+---------------+-----------+-----------+
+
+
+
+INSERT INTO Customer (Customer_id, Cust_Name, City, Grade, Salesman_id) VALUES
+(1, 'Rohit Malhotra', 'Delhi', 200, 1),
+(2, 'Anjali Joshi', 'Mumbai', 300, 2),
+(3, 'Sunil Agarwal', 'Kolkata', 150, 3),
+(4, 'Neha Desai', 'Chennai', 250, 4),
+(5, 'Vikas Khanna', 'Bangalore', 100, 5),
+(6, 'Pooja Iyer', 'Hyderabad', 180, 6),
+(7, 'Tarun Shetty', 'Pune', 220, 7),
+(8, 'Rita Saxena', 'Ahmedabad', 210, 8),
+(9, 'Amitabh Sinha', 'Jaipur', 270, 9),
+(10, 'Sakshi Chawla', 'Surat', 130, 10);
+
+mysql> select * from customer;
++-------------+----------------+-----------+-------+-------------+
+| Customer_id | Cust_Name      | City      | Grade | Salesman_id |
++-------------+----------------+-----------+-------+-------------+
+|           1 | Rohit Malhotra | Delhi     |   200 |
+  1 |
+|           2 | Anjali Joshi   | Mumbai    |   300 |
+  2 |
+|           3 | Sunil Agarwal  | Kolkata   |   150 |
+  3 |
+|           4 | Neha Desai     | Chennai   |   250 |
+  4 |
+|           5 | Vikas Khanna   | Bangalore |   100 |
+  5 |
+|           6 | Pooja Iyer     | Hyderabad |   180 |
+  6 |
+|           7 | Tarun Shetty   | Pune      |   220 |
+  7 |
+|           8 | Rita Saxena    | Ahmedabad |   210 |
+  8 |
+|           9 | Amitabh Sinha  | Jaipur    |   270 |
+  9 |
+|          10 | Sakshi Chawla  | Surat     |   130 |
+ 10 |
++-------------+----------------+-----------+-------+-------------+
+
+
+INSERT INTO Orders (Order_No, Purchase_Amt, Order_Date, Customer, Salesman_id) VALUES
+(101, 500.00, '2023-01-15', 1, 1),
+(102, 300.00, '2023-02-10', 2, 2),
+(103, 450.00, '2023-03-05', 3, 3),
+(104, 600.00, '2023-04-20', 4, 4),
+(105, 250.00, '2023-05-30', 5, 5),
+(106, 400.00, '2023-06-25', 6, 6),
+(107, 350.00, '2023-07-14', 7, 7),
+(108, 700.00, '2023-08-19', 8, 8),
+(109, 550.00, '2023-09-23', 9, 9),
+(110, 200.00, '2023-10-12', 10, 10);
+
+mysql> select * from orders;
++----------+--------------+------------+-------------+-------------+
+| Order_No | Purchase_Amt | Order_Date | Customer_id | Salesman_id |
++----------+--------------+------------+-------------+-------------+
+|      101 |          500 | 2023-01-15 |           1 |           1 |
+|      102 |          300 | 2023-02-10 |           2 |           2 |
+|      103 |          450 | 2023-03-05 |           3 |           3 |
+|      104 |          600 | 2023-04-20 |           4 |           4 |
+|      105 |          250 | 2023-05-30 |           5 |           5 |
+|      106 |          400 | 2023-06-25 |           6 |           6 |
+|      107 |          350 | 2023-07-14 |           7 |           7 |
+|      108 |          700 | 2023-08-19 |           8 |           8 |
+|      109 |          550 | 2023-09-23 |           9 |           9 |
+|      110 |          200 | 2023-10-12 |          10 |          10 |
++----------+--------------+------------+-------------+-------------+
+
+
+Retrieve the number of orders placed by each customer sorted in descending order of total orders:
+
+mysql> SELECT Customer_id, COUNT(*) AS Total_Orders
+    -> FROM Orders
+    -> GROUP BY Customer_id
+    -> ORDER BY Total_Orders DESC;
++-------------+--------------+
+| Customer_id | Total_Orders |
++-------------+--------------+
+|           1 |            1 |
+|           2 |            1 |
+|           3 |            1 |
+|           4 |            1 |
+|           5 |            1 |
+|           6 |            1 |
+|           7 |            1 |
+|           8 |            1 |
+|           9 |            1 |
+|          10 |            1 |
++-------------+--------------+
+
+
+mysql> select * from orders where salesman_ID = 2;
++----------+--------------+------------+-------------+-------------+
+| Order_No | Purchase_Amt | Order_Date | Customer_id | Salesman_id |
++----------+--------------+------------+-------------+-------------+
+|      102 |          300 | 2023-02-10 |           2 |           2 |
++----------+--------------+------------+-------------+-------------+
+
+mysql> SELECT COUNT(*)
+    -> FROM Customer
+    -> WHERE Grade > (
+    ->     SELECT AVG(Grade)
+    ->     FROM Customer
+    ->     WHERE City = 'Bangalore'
+    -> );
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+
+
+mysql> select salesman_ID from Orders;
++-------------+
+| salesman_ID |
++-------------+
+|           1 |
+|           2 |
+|           3 |
+|           4 |
+|           5 |
+|           6 |
+|           7 |
+|           8 |
+|           9 |
+|          10 |
++-------------+
+
+
+mysql> SELECT S.Name, S.Salesman_id, COUNT(C.Customer_id) AS NumberOfCustomers
+    -> FROM Salesman S
+    -> JOIN Customer C ON S.Salesman_id = C.Salesman_id
+    -> GROUP BY S.Name, S.Salesman_id
+    -> HAVING COUNT(C.Customer_id) = 1;
++---------------+-------------+-------------------+
+| Name          | Salesman_id | NumberOfCustomers |
++---------------+-------------+-------------------+
+| Amit Kumar    |           1 |                 1 |
+| Priya Singh   |           2 |                 1 |
+| Rajesh Sharma |           3 |                 1 |
+| Sonal Patel   |           4 |                 1 |
+| Ravi Mehta    |           5 |                 1 |
+| Sneha Nair    |           6 |                 1 |
+| Anil Reddy    |           7 |                 1 |
+| Meena Gupta   |           8 |                 1 |
+| Vikram Rao    |           9 |                 1 |
+| Kavita Verma  |          10 |                 1 |
++---------------+-------------+-------------------+
+
+
+
+
+SELECT Name, City, 'Has Customers' AS Status
+    -> FROM Salesman
+    -> WHERE Salesman_id IN (
+    ->     SELECT DISTINCT Salesman_id
+    ->     FROM Customer
+    ->     WHERE Customer.City = Salesman.City
+    -> );
++---------------+-----------+---------------+
+| Name          | City      | Status        |
++---------------+-----------+---------------+
+| Amit Kumar    | Delhi     | Has Customers |
+| Priya Singh   | Mumbai    | Has Customers |
+| Rajesh Sharma | Kolkata   | Has Customers |
+| Sonal Patel   | Chennai   | Has Customers |
+| Ravi Mehta    | Bangalore | Has Customers |
+| Sneha Nair    | Hyderabad | Has Customers |
+| Anil Reddy    | Pune      | Has Customers |
+| Meena Gupta   | Ahmedabad | Has Customers |
+| Vikram Rao    | Jaipur    | Has Customers |
+| Kavita Verma  | Surat     | Has Customers |
++---------------+-----------+---------------+
+
+
+SELECT S.Name, S.City, 'Has Customers' AS Status
+FROM Salesman S
+JOIN Customer C ON S.Salesman_id = C.Salesman_id AND S.City = C.City
+UNION
+SELECT S.Name, S.City, 'No Customers' AS Status
+FROM Salesman S
+LEFT JOIN Customer C ON S.Salesman_id = C.Salesman_id AND S.City = C.City
+WHERE C.Customer_id IS NULL;
+
+
++---------------+-----------+---------------+
+| Name          | City      | Status        |
++---------------+-----------+---------------+
+| Amit Kumar    | Delhi     | Has Customers |
+| Priya Singh   | Mumbai    | Has Customers |
+| Rajesh Sharma | Kolkata   | Has Customers |
+| Sonal Patel   | Chennai   | Has Customers |
+| Ravi Mehta    | Bangalore | Has Customers |
+| Sneha Nair    | Hyderabad | Has Customers |
+| Anil Reddy    | Pune      | Has Customers |
+| Meena Gupta   | Ahmedabad | Has Customers |
+| Vikram Rao    | Jaipur    | Has Customers |
+| Kavita Verma  | Surat     | Has Customers |
++---------------+-----------+---------------+
+
+
+
